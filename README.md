@@ -33,16 +33,24 @@ The run creates:
 - `output/ridgeline_freight_journal_entry.csv`
 - `output/exception_log.csv`
 
-## Web Submission Page
+## Web Submission App
 
-This repo also includes a Vercel-ready static submission page:
+This repo also includes a Vercel-ready web app:
 
 - `index.html`
 - `styles.css`
 - `assets/accrual_breakdown.png`
+- `api/regenerate.py`
 - `vercel.json`
 
-The page links directly to the generated audit pack, journal entry CSV, exception log, README, requirements, and source script.
+The page links directly to the generated April 2026 audit pack, journal entry CSV, exception log, README, requirements, and source script. It also includes an upload runner that accepts a fresh set of the six required CSVs and regenerates a new close package.
+
+The upload runner posts the files to `api/regenerate.py`, which:
+
+1. Writes the uploaded CSVs to a temporary serverless directory.
+2. Executes the same Python accrual engine used locally.
+3. Creates a fresh audit workbook, journal CSV, exception log, and `run_summary.json`.
+4. Returns the generated files as `ridgeline_freight_accrual_outputs.zip`.
 
 To preview locally, open `index.html` in a browser.
 
@@ -54,7 +62,7 @@ To deploy on Vercel:
 4. Use the repository root as the project root.
 5. Deploy.
 
-No build command is required.
+No build command is required. Vercel will install dependencies from `requirements.txt` for the Python serverless function.
 
 The workbook includes these tabs:
 

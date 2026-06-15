@@ -10,7 +10,7 @@
 <body>
   <header class="topbar">
     <div>
-      <p class="eyebrow">Numeric Finance Engineer Cup · Round 1</p>
+      <p class="eyebrow">Numeric Finance Engineer Cup &middot; Round 1</p>
       <h1>Ridgeline Foods Freight Accrual Engine</h1>
     </div>
     <a class="button secondary" href="README.md">README</a>
@@ -23,7 +23,8 @@
         <div class="total">$89,688.43</div>
         <p class="summary">
           A runnable Python accrual engine that estimates freight expense from April shipment activity, carrier rate cards,
-          historical invoice detail, and Denise's trailing-average baseline.
+          historical invoice detail, and Denise's trailing-average baseline. Upload a fresh source package to regenerate
+          the audit pack and journal entry from scratch.
         </p>
         <div class="actions">
           <a class="button" href="output/ridgeline_freight_accrual_audit_pack.xlsx">Download Audit Pack</a>
@@ -32,6 +33,47 @@
         </div>
       </div>
       <img class="chart" src="assets/accrual_breakdown.png" alt="Carrier accrual breakdown chart">
+    </section>
+
+    <section class="runner" aria-label="Regenerate accrual outputs">
+      <div class="runner-heading">
+        <div>
+          <p class="label">Run fresh files</p>
+          <h2>Upload the six source CSVs and regenerate the close package</h2>
+        </div>
+        <span id="runStatus" class="status">Ready</span>
+      </div>
+      <form id="uploadForm" class="upload-grid">
+        <label>
+          <span>April shipment activity</span>
+          <input type="file" name="shipments_apr2026.csv" accept=".csv" required>
+        </label>
+        <label>
+          <span>Peak Logistics rate card</span>
+          <input type="file" name="rate_card_peak_logistics.csv" accept=".csv" required>
+        </label>
+        <label>
+          <span>Heartland Freight rate card</span>
+          <input type="file" name="rate_card_heartland_freight.csv" accept=".csv" required>
+        </label>
+        <label>
+          <span>Coastal Express rate card</span>
+          <input type="file" name="rate_card_coastal_express.csv" accept=".csv" required>
+        </label>
+        <label>
+          <span>Historical invoice detail</span>
+          <input type="file" name="freight_invoices_oct2025_mar2026_v2.csv" accept=".csv" required>
+        </label>
+        <label>
+          <span>Denise baseline workbook CSV</span>
+          <input type="file" name="denise_accruals_v2.csv" accept=".csv" required>
+        </label>
+        <button class="button run-button" type="submit">Regenerate ZIP</button>
+      </form>
+      <p class="runner-note">
+        The serverless runner writes uploaded files to a temporary directory, executes the Python accrual engine, and
+        returns a ZIP with a new audit workbook, journal CSV, exception log, and run summary.
+      </p>
     </section>
 
     <section class="metrics" aria-label="Submission metrics">
@@ -90,11 +132,61 @@
         <a href="run_accrual.py">run_accrual.py</a>
         <a href="requirements.txt">requirements.txt</a>
         <a href="README.md">README.md</a>
+        <a href="api/regenerate.py">api/regenerate.py</a>
         <a href="output/ridgeline_freight_accrual_audit_pack.xlsx">ridgeline_freight_accrual_audit_pack.xlsx</a>
         <a href="output/ridgeline_freight_journal_entry.csv">ridgeline_freight_journal_entry.csv</a>
         <a href="output/exception_log.csv">exception_log.csv</a>
       </div>
     </section>
   </main>
+
+  <script>
+    const form = document.getElementById("uploadForm");
+    const statusEl = document.getElementById("runStatus");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      statusEl.textContent = "Running";
+      statusEl.className = "status running";
+
+      const body = new FormData(form);
+      try {
+        const response = await fetch("/api/regenerate", {
+          method: "POST",
+          body
+        });
+
+        if (!response.ok) {
+          let message = "Regeneration failed.";
+          try {
+            const payload = await response.json();
+            message = payload.error || message;
+            if (payload.missing) {
+              message += " Missing: " + payload.missing.join(", ");
+            }
+          } catch (err) {
+            message = await response.text();
+          }
+          throw new Error(message);
+        }
+
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "ridgeline_freight_accrual_outputs.zip";
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+
+        statusEl.textContent = "ZIP downloaded";
+        statusEl.className = "status success";
+      } catch (error) {
+        statusEl.textContent = error.message;
+        statusEl.className = "status error";
+      }
+    });
+  </script>
 </body>
 </html>
