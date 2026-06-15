@@ -1,0 +1,32 @@
+severity,carrier,shipment_id,category,message,estimated_financial_impact,control_owner
+Low,Peak Logistics,RATECARD,Stale rate data,Rate card effective 2025-01-01; verify no newer card before posting,0.0,Accounting
+High,Peak Logistics,SHP-10022,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10026,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+Low,Heartland Freight,RATECARD,Stale rate data,Rate card effective 2025-01-01; verify no newer card before posting,0.0,Accounting
+Low,Coastal Express,RATECARD,Stale rate data,Rate card effective 2025-01-01; verify no newer card before posting,0.0,Accounting
+Medium,Heartland Freight,SHP-10064,Missing weight,Weight missing; estimated from historical invoice averages,0.0,Accounting
+Medium,Heartland Freight,SHP-10098,Missing weight,Weight missing; estimated from historical invoice averages,0.0,Accounting
+High,Peak Logistics,SHP-10032,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10033,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10033,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10037,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+Medium,Coastal Express,SHP-10156,Missing weight,Weight missing; estimated from historical invoice averages,0.0,Accounting
+High,Peak Logistics,SHP-10039,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10004,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10008,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10029,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10034,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10021,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10028,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10030,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10003,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10006,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10010,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10027,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10040,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10009,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10031,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+High,Peak Logistics,SHP-10007,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting
+Medium,Heartland Freight,SHP-10104,Missing weight,Weight missing; estimated from historical invoice averages,0.0,Accounting
+Medium,Coastal Express,SHP-10155,Missing weight,Weight missing; estimated from historical invoice averages,0.0,Accounting
+High,Peak Logistics,SHP-10020,Invalid rate card mapping,Peak mileage not found for destination,0.0,Accounting

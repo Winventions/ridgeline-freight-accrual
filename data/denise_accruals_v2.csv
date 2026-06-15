@@ -1,0 +1,19 @@
+month,carrier,accrual_estimate,actual_invoiced,variance_dollars,variance_pct,notes
+October 2025,Peak Logistics,29167,31738.22,-2571,-8.1,
+October 2025,Heartland Freight,29767,32800,-3033,-9.2,"Q4 reset, back to Tier 1 rates"
+October 2025,Coastal Express,22500,24100,-1600,-6.6,More residential orders than expected
+November 2025,Peak Logistics,30246,31045.29,-799,-2.6,
+November 2025,Heartland Freight,31033,31900,-867,-2.7,
+November 2025,Coastal Express,23200,25800,-2600,-10.1,Holiday DTC spike
+December 2025,Peak Logistics,30861,27843.97,3017,10.8,"Slower volume, over-accrued"
+December 2025,Heartland Freight,31733,28500,3233,11.3,"Slower month, fewer shipments"
+December 2025,Coastal Express,24300,21200,3100,14.6,
+January 2026,Peak Logistics,30209,34396.48,-4187,-12.2,Volume picked back up
+January 2026,Heartland Freight,31067,38200,-7133,-18.7,Q1 reset killed us
+January 2026,Coastal Express,23700,25400,-1700,-6.7,
+February 2026,Peak Logistics,31095,34605.71,-3511,-10.1,
+February 2026,Heartland Freight,32867,34600,-1733,-5.0,
+February 2026,Coastal Express,24133,24900,-767,-3.1,
+March 2026,Peak Logistics,32282,34216.86,-1935,-5.7,
+March 2026,Heartland Freight,33767,33200,567,1.7,Volume discounts kicking back in
+March 2026,Coastal Express,23833,26300,-2467,-9.4,

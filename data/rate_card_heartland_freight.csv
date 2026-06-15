@@ -1,0 +1,64 @@
+Heartland Freight — Contracted Rate Schedule,,,,,
+"Customer: Ridgeline Foods  |  Account No: HF-4892  |  Effective: January 1, 2025  |  Rev: 2",,,,,
+,,,,,
+"ZONE DEFINITIONS — Hub: Kansas City, MO",,,,,
+Zone,Description,States / Areas Served,Assignment Basis,Notes,
+Zone 1,Local / Short-Haul,"Kansas City metro (MO + KS), eastern KS, western MO",ZIP code prefix,See ZIP lookup table,
+Zone 2,Regional,"Rest of MO, rest of KS, Iowa, southern NE",ZIP code prefix,,
+Zone 3,Extended Regional,"Illinois, southern MN, southern WI",ZIP code prefix,,
+Zone 4,Long-Haul,"Northern MN, northern WI, rest of NE",ZIP code prefix,,
+"IMPORTANT: Zone assignment is determined by ZIP code prefix, not by state. A shipment to Kansas City KS (ZIP 661xx) is Zone 1, not Zone 2, despite Kansas being a Zone 2 state for other destinations. Use the lookup table below for all zone assignments.",,,,,
+,,,,,
+ZIP CODE — ZONE ASSIGNMENT TABLE (First 3 Digits of Destination ZIP),,,,,
+ZIP Prefix Range,ZIP Pattern,Zone,Example Destinations,State(s),Notes
+640 – 641,640xx–641xx,Zone 1,Kansas City,MO,KC metro core
+660 – 662,660xx–662xx,Zone 1,"Kansas City, Overland Park",KS,KC metro — KS side. Zone 1 applies despite KS state.
+663 – 668,663xx–668xx,Zone 2,"Topeka, Lawrence",KS,Eastern KS outside KC metro
+669 – 679,669xx–679xx,Zone 2,"Wichita, Salina",KS,Rest of KS
+630 – 639,630xx–639xx,Zone 2,St. Louis,MO,Eastern MO
+650 – 659,650xx–659xx,Zone 2,"Springfield, Columbia",MO,Central / southern MO
+500 – 529,500xx–529xx,Zone 2,"Des Moines, Iowa City, Cedar Rapids",IA,All Iowa
+680 – 685,680xx–685xx,Zone 2,"Omaha, Lincoln",NE,Southern / central NE
+600 – 609,600xx–609xx,Zone 3,Chicago,IL,Chicago metro
+610 – 629,610xx–629xx,Zone 3,"Rockford, Peoria",IL,Rest of Illinois
+530 – 546,530xx–546xx,Zone 3,"Milwaukee, Madison, Green Bay",WI,Southern / central WI
+550 – 554,550xx–554xx,Zone 3,"Minneapolis, St. Paul",MN,Twin Cities metro
+547 – 549,547xx–549xx,Zone 4,"Eau Claire, Superior",WI,Northern WI
+555 – 567,555xx–567xx,Zone 4,"Duluth, St. Cloud, Rochester",MN,Greater MN (non-metro)
+686 – 693,686xx–693xx,Zone 4,"Norfolk, Grand Island",NE,Northern / western NE
+ZIP prefixes not listed: contact Heartland billing for zone assignment. Do not default to state-level lookup.,,,,,
+,,,,,
+BASE RATES — Flat Rate Per Shipment,,,,,
+Zone,Flat Rate (USD),Fuel Included?,Minimum Charge,Notes,
+Zone 1,$320,Yes — see fuel surcharge section,N/A — zone rate is the minimum,,
+Zone 2,$485,Yes,N/A,,
+Zone 3,$610.00,Yes,N/A,,
+Zone 4,$780,Yes,N/A,,
+,,,,,
+VOLUME DISCOUNT SCHEDULE — Quarterly Cumulative Shipments (QTD),,,,,
+Tier,Cumulative Shipments (QTD),Discount Off Base Rate,Applies To,Notes,
+Tier 1,1 – 50,0%,All shipments,Full rate,
+Tier 2,51 – 120,5%,All shipments in quarter once reached,,
+Tier 3,121 – 200,10%,All shipments in quarter once reached,,
+Tier 4,201+,15%,All shipments in quarter once reached,,
+* Shipment counts are cumulative within each calendar quarter and reset to zero on the first day of each quarter (Jan 1 / Apr 1 / Jul 1 / Oct 1). Discounts are applied prospectively once a tier threshold is crossed; prior shipments in the quarter are not retroactively repriced.,,,,,
+** Volume discount utilization history for account HF-4892 is available from your Heartland account manager upon request.,,,,,
+,,,,,
+FUEL SURCHARGE,,,,,
+Status,Detail,,,,
+INCLUDED IN FLAT RATE — No separate FSC,Heartland Freight incorporates all fuel costs into the zone flat rate above. No external fuel surcharge index (DOE or otherwise) is applied to Heartland invoices. Do not add a separate FSC line to Heartland accruals or invoices.,,,,
+,,,,,
+ACCESSORIAL CHARGES,,,,,
+Service,Fee (USD),Basis,Notes,,
+Liftgate Delivery,$85,Per shipment,,,
+Inside Delivery,$135.00,Per shipment,,,
+Appointment Delivery,$40,Per shipment,,,
+Detention — driver wait time,$75,Per hour,30 min free time at delivery and pickup. Billed in 30-min increments thereafter.,,
+NOTE: Accessorial charges are billed in addition to the base zone rate and any applicable volume discount. Volume discount does NOT apply to accessorial fees.,,,,,
+,,,,,
+MINIMUM CHARGE,,,,,
+Minimum charge per shipment:,N/A,The flat zone rate is the effective minimum. No additional minimum applies.,,,
+,,,,,
+TERMS & CONDITIONS,,,,,
+"Rates apply to standard LTL shipments tendered under account HF-4892 from Ridgeline Foods' Denver CO and Salt Lake City UT facilities. Rates are subject to change with 30-day written notice. Volume discount tier status is tracked by the Heartland billing system; shipper is responsible for verifying tier status at quarter-end and upon request. For zone disputes, ZIP boundary questions, or detention documentation, contact billing@heartlandfreight.com.",,,,,
+Rate card prepared by: Heartland Freight Pricing Team  |  Effective Q1 2025  |  Next scheduled review: Q1 2026,,,,,

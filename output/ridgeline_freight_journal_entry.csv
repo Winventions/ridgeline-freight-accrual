@@ -1,0 +1,5 @@
+journal_date,account,department,carrier,debit,credit,memo
+2026-04-30,Freight Expense,Operations,Coastal Express,24333.18,0.0,April 2026 freight accrual by activity-based estimate
+2026-04-30,Freight Expense,Operations,Heartland Freight,31946.25,0.0,April 2026 freight accrual by activity-based estimate
+2026-04-30,Freight Expense,Operations,Peak Logistics,33409.0,0.0,April 2026 freight accrual by activity-based estimate
+2026-04-30,Accrued Freight,Operations,All carriers,0.0,89688.43,April 2026 freight accrual offset
