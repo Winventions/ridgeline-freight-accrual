@@ -36,9 +36,20 @@ def main():
     thread = threading.Thread(target=server.serve_forever, daemon=True)
     thread.start()
     try:
+        base_url = f"http://127.0.0.1:{server.server_port}"
+        with urllib.request.urlopen(f"{base_url}/", timeout=20) as response:
+            home = response.read()
+            if response.status != 200 or b"Ridgeline Foods Freight Accrual Engine" not in home:
+                raise RuntimeError("Homepage smoke test failed")
+
+        with urllib.request.urlopen(f"{base_url}/api/regenerate", timeout=20) as response:
+            api_health = response.read()
+            if response.status != 200 or b"required_files" not in api_health:
+                raise RuntimeError("API health smoke test failed")
+
         boundary, body = multipart_body(REQUIRED_FILES)
         request = urllib.request.Request(
-            f"http://127.0.0.1:{server.server_port}/api/regenerate",
+            f"{base_url}/api/regenerate",
             data=body,
             method="POST",
             headers={"Content-Type": f"multipart/form-data; boundary={boundary}"},
