@@ -4,82 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ridgeline Foods Freight Accrual Engine</title>
-  <meta name="description" content="Activity-based April 2026 freight accrual engine for Numeric Finance Engineer Cup Round 1.">
+  <meta name="description" content="Upload freight close CSVs and regenerate the Ridgeline Foods accrual audit pack.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
+  <header class="app-header">
     <div>
-      <p class="eyebrow">Numeric Finance Engineer Cup &middot; Round 1</p>
-      <h1>Ridgeline Foods Freight Accrual Engine</h1>
+      <p class="eyebrow">Numeric Finance Engineer Cup Round 1</p>
+      <h1>Freight Accrual Close Runner</h1>
+      <p class="header-copy">Upload the source files, run the accrual engine, and download a fresh audit pack.</p>
     </div>
-    <a class="button secondary" href="README.md">README</a>
+    <nav class="header-actions" aria-label="Project links">
+      <a class="button subtle" href="README.md">README</a>
+      <a class="button subtle" href="https://github.com/Winventions/ridgeline-freight-accrual">GitHub</a>
+    </nav>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="label">April 2026 close estimate</p>
-        <div class="total">$89,688.43</div>
-        <p class="summary">
-          A runnable Python accrual engine that estimates freight expense from April shipment activity, carrier rate cards,
-          historical invoice detail, and Denise's trailing-average baseline. Upload a fresh source package to regenerate
-          the audit pack and journal entry from scratch.
+    <section class="close-workbench">
+      <div class="workbench-main">
+        <div class="step-label">Step 1</div>
+        <h2>Choose the six required CSVs</h2>
+        <p class="muted">
+          Select or drop the full source package. The app matches files by name so the regenerated workbook is traceable
+          to exactly what was uploaded.
         </p>
-        <div class="actions">
-          <a class="button" href="output/ridgeline_freight_accrual_audit_pack.xlsx">Download Audit Pack</a>
-          <a class="button secondary" href="output/ridgeline_freight_journal_entry.csv">Journal CSV</a>
-          <a class="button secondary" href="output/exception_log.csv">Exception Log</a>
+
+        <form id="uploadForm">
+          <label id="dropZone" class="drop-zone">
+            <input id="filePicker" type="file" accept=".csv" multiple>
+            <strong>Drop CSV files here</strong>
+            <span>or browse and select all six source files</span>
+          </label>
+
+          <div class="run-row">
+            <button id="runButton" class="button primary" type="submit" disabled>Run Accrual Engine</button>
+            <span id="runStatus" class="status">Waiting for files</span>
+          </div>
+        </form>
+
+        <div class="sample-row">
+          <a class="button subtle" href="assets/sample_source_files.zip">Download sample source package</a>
+          <a class="button subtle" href="output/ridgeline_freight_accrual_audit_pack.xlsx">View included April audit pack</a>
         </div>
       </div>
-      <img class="chart" src="assets/accrual_breakdown.png" alt="Carrier accrual breakdown chart">
-    </section>
 
-    <section class="runner" aria-label="Regenerate accrual outputs">
-      <div class="runner-heading">
-        <div>
-          <p class="label">Run fresh files</p>
-          <h2>Upload the six source CSVs and regenerate the close package</h2>
+      <aside class="file-panel" aria-label="Required file checklist">
+        <div class="panel-title">
+          <span>Required Inputs</span>
+          <strong id="fileCount">0 / 6 ready</strong>
         </div>
-        <span id="runStatus" class="status">Ready</span>
-      </div>
-      <form id="uploadForm" class="upload-grid">
-        <label>
-          <span>April shipment activity</span>
-          <input type="file" name="shipments_apr2026.csv" accept=".csv" required>
-        </label>
-        <label>
-          <span>Peak Logistics rate card</span>
-          <input type="file" name="rate_card_peak_logistics.csv" accept=".csv" required>
-        </label>
-        <label>
-          <span>Heartland Freight rate card</span>
-          <input type="file" name="rate_card_heartland_freight.csv" accept=".csv" required>
-        </label>
-        <label>
-          <span>Coastal Express rate card</span>
-          <input type="file" name="rate_card_coastal_express.csv" accept=".csv" required>
-        </label>
-        <label>
-          <span>Historical invoice detail</span>
-          <input type="file" name="freight_invoices_oct2025_mar2026_v2.csv" accept=".csv" required>
-        </label>
-        <label>
-          <span>Denise baseline workbook CSV</span>
-          <input type="file" name="denise_accruals_v2.csv" accept=".csv" required>
-        </label>
-        <button class="button run-button" type="submit">Regenerate ZIP</button>
-      </form>
-      <p class="runner-note">
-        The serverless runner writes uploaded files to a temporary directory, executes the Python accrual engine, and
-        returns a ZIP with a new audit workbook, journal CSV, exception log, and run summary.
-      </p>
+        <ul id="fileChecklist" class="file-checklist"></ul>
+      </aside>
     </section>
 
-    <section class="metrics" aria-label="Submission metrics">
+    <section class="outcome-strip" aria-label="Included April output summary">
       <div>
-        <span>Shipments analyzed</span>
-        <strong>161</strong>
+        <span>Included April estimate</span>
+        <strong>$89,688.43</strong>
       </div>
       <div>
         <span>Journal tie-out</span>
@@ -90,80 +72,155 @@
         <strong>31</strong>
       </div>
       <div>
-        <span>Evidence classes</span>
-        <strong>4</strong>
+        <span>Live output format</span>
+        <strong>ZIP</strong>
       </div>
     </section>
 
-    <section class="content-grid">
-      <article>
-        <h2>What It Does</h2>
-        <p>
-          The engine normalizes messy carrier names, parses non-standard rate cards, applies carrier-specific pricing,
-          estimates accessorials when needed, and writes a CFO-readable Excel audit pack.
+    <section class="results-guide">
+      <div class="guide-copy">
+        <p class="eyebrow">What downloads after a run</p>
+        <h2>A close-ready ZIP, not just a dashboard</h2>
+        <p class="muted">
+          The serverless runner processes uploads in a temporary workspace, executes the Python engine, and returns the
+          generated files. Nothing needs to be edited by hand after the run.
         </p>
-      </article>
-      <article>
-        <h2>Accounting Judgment</h2>
-        <p>
-          Direct rate-card calculations are separated from historical estimates and broader assumptions. April actual
-          invoices were not provided, so April is labeled as an estimate rather than compared to unavailable actuals.
-        </p>
-      </article>
-      <article>
-        <h2>Controls</h2>
-        <p>
-          The output includes required-field checks, stale rate-card warnings, mapping exceptions, missing-weight
-          estimates, outlier review, materiality thresholds, and shipment-to-journal tie-outs.
-        </p>
-      </article>
-      <article>
-        <h2>Highest-Risk Area</h2>
-        <p>
-          Peak Logistics has missing mileage mappings in the provided rate card. Those shipments use historical fallback
-          estimates and remain visible in the exception log for close review.
-        </p>
-      </article>
+      </div>
+      <div class="output-list">
+        <div>
+          <span>Excel audit pack</span>
+          <strong>8 CFO/auditor-readable tabs</strong>
+        </div>
+        <div>
+          <span>Journal CSV</span>
+          <strong>Debit and credit lines ready to review</strong>
+        </div>
+        <div>
+          <span>Exception log</span>
+          <strong>Missing data, stale rates, mapping gaps</strong>
+        </div>
+        <div>
+          <span>Run summary</span>
+          <strong>Machine-readable tie-out status</strong>
+        </div>
+      </div>
     </section>
 
-    <section class="files">
-      <h2>Submission Files</h2>
-      <div class="file-list">
-        <a href="run_accrual.py">run_accrual.py</a>
-        <a href="requirements.txt">requirements.txt</a>
-        <a href="README.md">README.md</a>
-        <a href="api/regenerate.py">api/regenerate.py</a>
-        <a href="output/ridgeline_freight_accrual_audit_pack.xlsx">ridgeline_freight_accrual_audit_pack.xlsx</a>
-        <a href="output/ridgeline_freight_journal_entry.csv">ridgeline_freight_journal_entry.csv</a>
-        <a href="output/exception_log.csv">exception_log.csv</a>
-      </div>
+    <section class="method-grid">
+      <article>
+        <span class="step-label">Step 2</span>
+        <h3>Rate logic runs by carrier</h3>
+        <p>
+          Peak uses miles and weight tiers, Heartland uses ZIP zones and Q2 volume tiers, and Coastal uses ZIP regions,
+          pounds, fuel, and residential surcharge tiers.
+        </p>
+      </article>
+      <article>
+        <span class="step-label">Step 3</span>
+        <h3>Assumptions stay visible</h3>
+        <p>
+          Direct rate-card dollars, historical estimates, assumption-based amounts, and flagged exceptions are separated
+          at the shipment level.
+        </p>
+      </article>
+      <article>
+        <span class="step-label">Step 4</span>
+        <h3>Controls tie out</h3>
+        <p>
+          The workbook reconciles shipment detail to carrier totals and the journal entry, with exceptions surfaced for
+          close review.
+        </p>
+      </article>
     </section>
   </main>
 
   <script>
-    const form = document.getElementById("uploadForm");
+    const requiredFiles = [
+      ["shipments_apr2026.csv", "Shipment activity"],
+      ["rate_card_peak_logistics.csv", "Peak Logistics rate card"],
+      ["rate_card_heartland_freight.csv", "Heartland Freight rate card"],
+      ["rate_card_coastal_express.csv", "Coastal Express rate card"],
+      ["freight_invoices_oct2025_mar2026_v2.csv", "Historical invoice detail"],
+      ["denise_accruals_v2.csv", "Denise baseline"]
+    ];
+
+    const selected = new Map();
+    const checklist = document.getElementById("fileChecklist");
+    const fileCount = document.getElementById("fileCount");
+    const runButton = document.getElementById("runButton");
     const statusEl = document.getElementById("runStatus");
+    const picker = document.getElementById("filePicker");
+    const dropZone = document.getElementById("dropZone");
+    const form = document.getElementById("uploadForm");
+
+    function renderChecklist() {
+      checklist.innerHTML = "";
+      let ready = 0;
+      requiredFiles.forEach(([fileName, label]) => {
+        const hasFile = selected.has(fileName);
+        if (hasFile) ready += 1;
+        const item = document.createElement("li");
+        item.className = hasFile ? "ready" : "";
+        item.innerHTML = `<span>${label}</span><code>${fileName}</code>`;
+        checklist.appendChild(item);
+      });
+      fileCount.textContent = `${ready} / ${requiredFiles.length} ready`;
+      runButton.disabled = ready !== requiredFiles.length;
+      if (ready === requiredFiles.length) {
+        statusEl.textContent = "Ready to run";
+        statusEl.className = "status success";
+      } else {
+        statusEl.textContent = "Waiting for files";
+        statusEl.className = "status";
+      }
+    }
+
+    function addFiles(fileList) {
+      Array.from(fileList).forEach((file) => {
+        if (requiredFiles.some(([name]) => name === file.name)) {
+          selected.set(file.name, file);
+        }
+      });
+      renderChecklist();
+    }
+
+    picker.addEventListener("change", (event) => addFiles(event.target.files));
+
+    ["dragenter", "dragover"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        dropZone.classList.add("dragging");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((eventName) => {
+      dropZone.addEventListener(eventName, (event) => {
+        event.preventDefault();
+        dropZone.classList.remove("dragging");
+      });
+    });
+
+    dropZone.addEventListener("drop", (event) => addFiles(event.dataTransfer.files));
 
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      statusEl.textContent = "Running";
+      if (runButton.disabled) return;
+
+      statusEl.textContent = "Running engine";
       statusEl.className = "status running";
+      runButton.disabled = true;
 
-      const body = new FormData(form);
+      const body = new FormData();
+      requiredFiles.forEach(([fileName]) => body.append(fileName, selected.get(fileName), fileName));
+
       try {
-        const response = await fetch("/api/regenerate", {
-          method: "POST",
-          body
-        });
-
+        const response = await fetch("/api/regenerate", { method: "POST", body });
         if (!response.ok) {
           let message = "Regeneration failed.";
           try {
             const payload = await response.json();
             message = payload.error || message;
-            if (payload.missing) {
-              message += " Missing: " + payload.missing.join(", ");
-            }
+            if (payload.missing) message += " Missing: " + payload.missing.join(", ");
           } catch (err) {
             message = await response.text();
           }
@@ -185,8 +242,12 @@
       } catch (error) {
         statusEl.textContent = error.message;
         statusEl.className = "status error";
+      } finally {
+        runButton.disabled = selected.size !== requiredFiles.length;
       }
     });
+
+    renderChecklist();
   </script>
 </body>
 </html>
